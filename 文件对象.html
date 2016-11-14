@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>文件对象</title>
+</head>
+<body>
+
+<input type="button" value="选择文件">
+<input type="file" name="" id="" style='display: none;'>
+
+<script>
+   var but=document.querySelector('[type="button"]');
+   var file=document.querySelector('[type="file"]');
+
+   but.addEventListener('click',function(){
+       file.click()
+   });
+
+    file.addEventListener('change',function(){
+
+        var dd=this.files[0];
+        var reader=new FileReader();
+
+        //读取图片信息，以base64编码的方式显示图片信息
+//        // reader.readAsDataURL(dd);
+//        //读取文本信息
+
+        reader.readAsText(dd);
+        reader.onload=function(e){   //注意这里加载函数执行时，一定要加上   even事件
+          var result= e.target.result;
+
+            var p=document.createElement('p');
+            p.innerHTML=result;
+            document.body.appendChild(p)
+
+
+        }
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+//    var btn = document.querySelector('[type=button]');
+//    var filebtn = document.querySelector('[type=file]');
+//    console.log(btn);
+//
+//    btn.addEventListener('click', function(){
+//        filebtn.click();
+//    });
+//
+//    filebtn.addEventListener('change', function(e){
+//        var file = this.files[0];
+//        if(!file){return}
+//        var reader = new FileReader();
+//        //读取图片信息，以base64编码的方式显示图片信息
+//        // reader.readAsDataURL(file);
+//        //读取文本信息
+//        reader.readAsText(file);
+//        reader.onload = function(e){
+////            console.log(e);
+//            var result = e.target.result;
+//            var p = document.createElement('p');
+//            p.innerHTML = result;
+//            document.body.appendChild(p);
+//        }
+//    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

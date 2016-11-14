@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 800px;
+            height: 800px;
+            border:1px dashed #cfcfcf;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+<a href="###" data-num="1">grdgtreyrt</a>
+<img data-num="2" src="h5.jpg" alt="">
+<p data-num="3" draggable="true">hguhijijo </p>
+
+<!--//这里必须要给p 加 draggable属性，这样才能拖动，但是在火狐不能实现效果，在谷歌可以。a和img 标签都是默认可以拖动的-->
+
+<div></div>
+
+<script type="text/javascript">
+    var a=document.querySelector('a');
+    var img=document.querySelector('img');
+    var p=document.querySelector('p');
+
+    function draggable(obj){
+        obj.addEventListener('dragstart',function(e){
+            var num=this.dataset.num;
+            e.dataTransfer.setData('hh', num);
+//            这是先设置数据和  数字
+
+        })
+
+    }
+    draggable(a);
+    draggable(img);
+    draggable(p);
+
+ var dd=document.querySelector('div');
+    dd.addEventListener('dragenter',function(e){
+        e.preventDefault();
+        e.stopPropagation()
+
+    });
+    dd.addEventListener('dragover',function(e){
+        e.preventDefault();
+        e.stopPropagation()
+
+
+    });
+
+    dd.addEventListener('drop',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+       var id= e.dataTransfer.getData('hh');  //获取上面的  设置的新的数据。
+
+        var bb=document.querySelector('[data-num="'+ id + '"]');   //注意字符串的连接
+       dd.appendChild(bb)
+
+    });
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

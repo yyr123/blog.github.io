@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>files</title>
+</head>
+<body>
+<!--multiple 属性可以一次同时选择多个文件-->
+<input type="file" name="" id="" multiple>
+
+<script>
+
+//    var input = document.querySelector('input');
+//
+//    input.addEventListener('change', function(e){
+//        console.log(input.files[0]);
+//        //files[0]就是我们需要文件信息的一个入口
+////        var file = input.files[0];
+////        var p = document.createElement('p');
+////        p.innerHTML = '文件的名称：'+ file.name + ';文件的大小：'+ file.size + ';文件的类型：'+ file.type;
+////        document.body.appendChild(p);
+//    })
+
+var input=document.querySelector('input');
+
+    input.addEventListener('change',function(e){
+        console.log(input.files[0]);  //这样会输出文件的详细信息，
+
+        var file=input.files[0];
+
+        var p=document.createElement('p');
+        p.innerHTML='文件名称：'+file.name+';文件的大小：'+file.size+';文件的类型:'+file.type;
+        document.body.appendChild(p);
+
+
+
+
+
+    })
+
+
+
+
+</script>
+
+</body>
+</html>

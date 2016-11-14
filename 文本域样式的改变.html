@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>文件域样式的改变</title>
+</head>
+<body>
+<input type="button" value="选择文件">
+<input type="file" name="" id="" style='display: none;' multiple >
+<script>
+
+//    var btn = document.querySelector('[type=button]');
+//    var filebtn = document.querySelector('[type=file]');
+//    console.log(btn);
+//
+//    btn.addEventListener('click', function(){
+//        filebtn.click();
+//    });
+//    filebtn.addEventListener('change', function(e){
+//        var file = this.files[0];
+//        //files[0]就是我们需要文件信息的一个入口
+//        if(!file){return}
+//
+//
+//        var p = document.createElement('p');
+//        p.innerHTML = '文件的名称：'+ file.name + ';文件的大小：'+ file.size + ';文件的类型：'+ file.type;
+//        document.body.appendChild(p);
+//    })
+
+    var bt=document.querySelector('[type="button"]');
+    var file=document.querySelector('[type="file"]');
+
+    bt.addEventListener('click',function(){
+        file.click()
+
+    });
+    file.addEventListener('change',function(){
+        var tt=this.files[0];
+        console.log(tt);
+
+        var p=document.createElement('p');  //这里是  创建  一个新的元素p标签。
+        p.innerHTML='文件名称:'+tt.name+';文件大小:'+tt.size+';文件类型'+tt.type;
+        document.body.appendChild(p)
+
+
+
+    })
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

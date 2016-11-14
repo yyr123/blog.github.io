@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>drag</title>
+    <style>
+    div {
+        width: 500px;
+        height: 500px;
+        border: 3px dotted #ccc;
+        margin: 0 auto;
+        box-shadow: 5px 5px 5px #ccc;
+    }
+
+
+</style>
+</head>
+<body>
+<!-- a标签和img标签默认是可以拖动的 -->
+
+<a href="#" data-num='1'>www.baidu.com</a>
+<img data-num='2' src="h5.jpg" alt="" style='width: 100px' >
+
+<!-- draggable是一定需要加上true或者false的 -->
+
+<p data-num='3' draggable = 'true'>这是p标签的内容</p>
+<div></div>
+<script type="text/javascript">
+    var img=document.querySelector('img');
+    var a=document.querySelector('a');
+    var p=document.querySelector('p');
+
+
+
+    function dragElement(obj){
+        obj.addEventListener('dragstart', function(e){
+
+            var dataNum = this.dataset.num;
+
+            e.dataTransfer.setData('datanum', dataNum);
+
+//            'datanum'  这个可以任意设置
+        });
+
+         }
+    dragElement(img);
+    dragElement(a);
+    dragElement(p);
+
+
+
+
+
+    // ondragenter 当被鼠标拖动的对象进入其容器范围内时触发此事件
+    // ondragover 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
+    // ondragleave  当被鼠标拖动的对象离开其容器范围内时触发此事件
+    // ondrop  在一个拖动过程中，释放鼠标键时触发此事件
+
+
+
+var vv=document.querySelector('div');
+
+    vv.addEventListener('dragenter',function(e){
+        e.stopPropagation();
+        e.preventDefault();
+
+    });
+
+    vv.addEventListener('dragover',function(e){
+        e.stopPropagation();
+        e.preventDefault();
+
+    });
+//    若不加  dragover 事件，p标签本身有默认属性，拖动到盒子中，还是会自动返回到原来的位置，
+
+//默认地，无法将数据/元素放置到其他元素中。就是拖动到一定位置，然后它又自动返回到原来的位置。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。
+    //    这要通过调用dragover事件的 event.preventDefault() 方法：
+
+
+
+//    vv.addEventListener('dragleave',function(e){
+////        console.log('dragleave');
+//        e.preventDefault();
+
+//    });
+
+
+
+    vv.addEventListener('drop',function(e){
+//        console.log('drop');
+        e.stopPropagation();  //阻止其扩展到新的页面
+        e.preventDefault();
+
+     var id = e.dataTransfer.getData('datanum');
+
+//        通过 dataTransfer.getData(" ") 方法获得被拖的数据。被拖数据是被拖元素的 id ("drag1")
+
+//        console.log(id);
+
+     var ele = document.querySelector('[data-num="' + id + '"]');
+        vv.appendChild(ele);
+    })
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

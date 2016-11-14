@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body {width: 100%;height: 100%;}
+        div{
+            width: 80%;
+            height: 500px;
+            border: 3px dotted #ccc;
+            margin: 0 auto;
+        }
+
+
+    </style>
+</head>
+<body>
+<div></div>
+<script type="text/javascript">
+
+   var div=document.querySelector('div');
+
+//
+//   dv.addEventListener('dragenter',function(e){
+//
+//   });
+   div.addEventListener('dragover',function(e){
+
+       e.stopPropagation() ;
+       e.preventDefault();
+   });
+
+
+   div.addEventListener('drop',function(e){
+
+       e.stopPropagation() ;
+       e.preventDefault();
+
+       var file= e.dataTransfer.files[0];   //files[0]就是我们需要文件信息的一个入口
+       var reader=new FileReader();   //实现文件的上传
+
+       if(file.type.indexOf('image') >= 0) {
+           reader.readAsDataURL(file);  //这样是传输的照片
+
+           reader.onload=function(e){
+
+               var result =e.target.result;    //注意这里的target是固定格式
+               var img = document.createElement('img');
+               img.src = result;
+               div.appendChild(img);
+           }
+       } else{
+               reader.readAsText(file);
+
+               reader.onload=function(e){
+                   var result= e.target.result;  //注意这里的target是固定格式
+                   var p=document.createElement('p');
+                   p.innerHTML=result;
+                   div.appendChild(p);
+
+               } ;
+           }
+       })
+
+
+</script>
+
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<title>从桌面拖入</title>-->
+    <!--<style type="text/css" media="screen">-->
+        <!--html, body {width: 100%;height: 100%;}-->
+        <!--div{-->
+            <!--width: 80%;-->
+            <!--height: 500px;-->
+            <!--border: 3px dotted #ccc;-->
+            <!--margin: 0 auto;-->
+        <!--}-->
+    <!--</style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div>-->
+
+<!--</div>-->
+<!--<script>-->
+
+    <!--var target = document.querySelector('div');-->
+
+    <!--target.addEventListener('dragenter', function(e){-->
+        <!--// console.log(e);-->
+    <!--})-->
+
+    <!--target.addEventListener('dragover', function(e){-->
+        <!--// console.log(e);-->
+        <!--e.stopPropagation();-->
+        <!--e.preventDefault();-->
+    <!--})-->
+    <!--target.addEventListener('dragleave', function(e){-->
+        <!--// console.log(e);-->
+    <!--})-->
+    <!--target.addEventListener('drop', function(e){-->
+        <!--e.stopPropagation();-->
+        <!--e.preventDefault();-->
+
+        <!--console.log(e.dataTransfer.files);-->
+        <!--var file = e.dataTransfer.files[0];-->
+        <!--var reader = new FileReader();-->
+
+        <!--if(file.type.indexOf('image') >= 0){-->
+            <!--reader.readAsDataURL(file);-->
+
+            <!--reader.onload = function(e){-->
+                <!--var result = e.target.result;-->
+                <!--var img = document.createElement('img');-->
+                <!--img.src = result;-->
+                <!--target.appendChild(img);-->
+
+            <!--}-->
+
+        <!--}else{-->
+            <!--reader.readAsText(file);-->
+            <!--reader.onload = function(e){-->
+                <!--var result = e.target.result;-->
+                <!--var p = document.createElement('p');-->
+                <!--p.innerHTML = result;-->
+                <!--target.appendChild(p);-->
+            <!--}-->
+        <!--}-->
+
+
+    <!--})-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
